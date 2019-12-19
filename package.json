@@ -1,0 +1,33 @@
+{
+  "name": "battery-monitor",
+  "version": "2.0.0",
+  "description": "Graphic representation of battery data",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "install": "electron-rebuild",
+    "build:win": "electron-packager . --platform=win32"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:johnny-five-io/electron-serialport.git"
+  },
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^1.8.8",
+    "electron-rebuild": "^1.4.0"
+  },
+  "dependencies": {
+    "canvas-gauges": "^2.1.5",
+    "electron-packager": "^12.2.0",
+    "serialport": "^7.0.1"
+  }
+}

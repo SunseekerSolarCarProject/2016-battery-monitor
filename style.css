@@ -1,0 +1,275 @@
+/* global colors */
+:root {
+    --primary: #8b6f4e;
+    --secondary: #594839;
+    --border: #8a8d8f;
+    --background: #000000;
+    --danger: #b91233;
+    --success: #7ab700;
+    --warning: #d87c21;
+}
+
+body {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    background-color: var(--background);
+}
+
+/* port list */
+.center {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* port com button */
+.com-button {
+    width: 150px;
+    height: 80px;
+    background-color: var(--primary);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin: 30px;
+    color: white;
+    font-size: 20px;
+    transition: background-color 0.5s ease;
+    outline: none;
+}
+
+.com-button:hover {
+    background: var(--secondary);
+    cursor: pointer;
+}
+
+/* all data */
+.data-container {
+    display: none;
+}
+
+.data {
+    display: flex;
+    height: 100%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* left side gauges current and voltage */
+.gauges {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+}
+
+/* right side tables */
+.tables {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* top bar stats state and error */
+.stats {
+    color: var(--border);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 36px;
+    font-weight: 600;
+    width: 100%;
+    margin-top: 30px;
+}
+
+/* battery state label and tooltip */
+.batt-state {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* batter stats max min and difference */
+.volt-stats {
+    color: var(--border);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 36px;
+    font-weight: 600;
+    width: 100%;
+}
+
+.volt-stats p {
+    margin: 10px 0;
+}
+
+/* titles for the tables */
+.title {
+    font-size: 46px;
+    margin: 20px 0;
+    font-weight: bold;
+    color: var(--primary);
+
+}
+
+/* tables */
+#volts, #temps {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    width: 100%;
+    height:300px;
+    color: var(--primary);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin: 10px 0;
+    padding: 5px;
+    justify-items: center;
+    align-items: center;
+}
+
+/* table data cells */
+#volts div, #temps div {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    position: relative;
+    border-right: 1px solid rgba(143, 140, 138, 0.3);
+    border-bottom: 1px solid rgba(143, 140, 138, 0.3);
+    margin: 2px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* remove border on bottom row */
+#volts div:nth-child(n+29), #temps div:nth-child(n+29) {
+    border-bottom: none;
+}
+
+/* remove border on right column */
+#volts div:nth-child(7n), #temps div:nth-child(7n) {
+    border-right: none;
+}
+
+/* table cell numbers */
+#volts span, #temps span {
+    color: var(--border);
+    position: absolute;
+    top: 0;
+    left: 5;
+    font-size: 16px;
+}
+
+/* general danger color class */
+.danger {
+    color: var(--danger);
+}
+
+/* general success color class */
+.success {
+    color: var(--success);
+}
+
+/* general warning color class */
+.warning {
+    color: var(--warning);
+}
+
+/* general row alignment class */
+.row {
+    display: flex;
+    align-items: center;
+}
+
+/* general column alignment class */
+.column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* Tooltip hover target */
+.tooltip {
+    position: relative;
+}
+
+/* Tooltip text */
+.tooltip .tooltip-text {
+    visibility: hidden;
+    width: 250px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 1;
+    top: 125%;
+    left: 50%;
+    margin-left: -125px;
+
+    /* Fade in tooltip */
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* Tooltip arrow */
+.tooltip .tooltip-text::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent #555 transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* help buttons */
+.help {
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: var(--secondary);
+    color: var(--border);
+    font-size: 24px;
+    font-weight: 600;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    margin-left: 10px;
+    border: 1px solid var(--border);
+    outline: none;
+}
+
+/* collapse content container */
+.collapse-content {
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--border);
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    align-items: center;
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}

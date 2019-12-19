@@ -1,0 +1,116 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Battery Stats</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <div>
+        <!-- error contaner -->
+        <div id="error"></div>
+
+        <!-- display all ports in button form -->
+        <div id="ports" class="center"></div>
+
+        <!-- main app -->
+        <div id="data-container" class="data-container">
+            <div class="data">
+                <div class="gauges">
+
+                    <!-- Battery current gauge -->
+                    <div class="column">
+                        <canvas id="current" data-type="radial-gauge" data-width="300" data-height="300" data-units="Battery Current" data-min-value="-20" data-start-angle="90"
+                            data-ticks-angle="180" data-value-box="true" data-max-value="80" data-major-ticks="-20,-10,0,10,20,30,40,50,60,70,80"
+                            data-minor-ticks="5" data-stroke-ticks="true" data-highlights='[
+                                {"from": 60, "to": 80, "color": "rgba(200, 50, 50, .75)"},
+                                {"from": -3, "to": -2, "color": "rgba(50, 200, 50, .75)"}
+                            ]' data-color-plate="#bdb1a7" data-border-shadow-width="0" data-borders="false" data-needle-type="arrow"
+                            data-needle-width="2" data-needle-circle-size="7" data-needle-circle-outer="true" data-needle-circle-inner="false"
+                            data-animation-duration="500" data-animation-rule="linear"></canvas>
+                        
+                        <!-- battery current help tooltip -->
+                        <div class="tooltip help">?
+                            <span class="tooltip-text">
+                                <span>Max Current Discharge: 80.2</span>
+                                <span>Min Current Charge: 2.640</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Battery voltage gauge -->
+                    <canvas id="batt-volts" data-type="linear-gauge" data-width="150" data-height="300" data-min-value="0" data-max-value="150" data-major-ticks="0,30,60,90,120,150"
+                        data-minor-ticks="3" data-stroke-ticks="true" data-highlights='false' data-color-plate="#bdb1a7" data-border-shadow-width="0"
+                        data-borders="false" data-bar-begin-circle="false" data-bar-width="10" data-tick-side="left" data-number-side="left"
+                        data-needle-side="left" data-needle-type="line" data-needle-width="3" data-color-needle="#222" data-color-needle-end="#222"
+                        data-animation-duration="500" data-animation-rule="linear" data-animation-target="plate" data-border-radius="10" data-units="Battery Voltage"></canvas>
+
+                    
+                </div>
+
+                
+                <div class="tables">
+                    <div class="stats">
+                        <!-- battery state -->
+                        <div>
+                            <span class="batt-state">State: 
+                                <span id="state" class="state">1 - Initialization</span>
+                                <!-- battery state tooltip -->
+                                <div class="tooltip help">?
+                                <span class="tooltip-text">
+                                    <span>1 - Initialization</span>
+                                    <span>2 - Self Check</span>
+                                    <span>3 - BPS Power</span>
+                                    <span>4 - BPS Ready</span>
+                                    <span>5 - Array Ready</span>
+                                    <span>6 - CAN Check</span>
+                                    <span>7 - Precharge</span>
+                                    <span>8 - Normal OP</span>
+                                    <span>9 - Charge Mode</span>
+                                    <span>10 - Error Mode</span>
+                                </span>
+                            </div>
+                            </span>
+                        </div>
+                        <!-- battery error -->
+                        <div id="battery-error">
+                            <span class="batt-error">Error: <span class="error">No Error</span></span>
+                        </div>
+                    </div>
+                    <!-- volt table -->
+                    <p class="title">Voltages</p>
+                    <!-- voltage stats -->
+                    <div class="volt-stats">
+                        <p>Highest: <span id="volt-max" class="warning"></span></p>
+                        <p>Lowest: <span id="volt-min" class="danger"></span></p>
+                        <p>Difference: <span id="volt-diff"></span></p>
+                        <button class="help" onclick="openHelp('volt-collapse')">?</button>
+                    </div>
+                    <!-- collapse content -->
+                    <div id="volt-collapse" class="collapse-content">
+                        <p>Max Voltage: <span class="warning">4.176</span></p>
+                        <p>Min Voltage: <span class="danger">2.640</span></p>
+                    </div>
+                    <div id="volts"></div>
+    
+                    <!-- temp table -->
+                    <div class="row">
+                        <p class="title">Temperatures</p>
+                        <button class="help" onclick="openHelp('temp-collapse')">?</button>
+                    </div>
+                    <!-- collapse content -->
+                    <div id="temp-collapse" class="collapse-content">
+                        <p>Max Temp Discharge: <span class="danger">140 F/60 C</span></p>
+                        <p>Min Temp Charge: <span class="warning">113 F/40 C</span></p>
+                    </div>
+                    <div id="temps"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="./libs/serialport.js"></script>
+</html>
